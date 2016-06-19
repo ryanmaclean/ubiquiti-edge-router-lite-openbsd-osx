@@ -351,3 +351,13 @@ OpenBSD/octeon (octeon1) (console)
 
 login:
 ```
+
+Update OpenBSD
+==============
+
+Now that everything's all installed and working, you'll want to run an update:
+
+```
+su -
+pkg_add -Uu
+```
