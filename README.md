@@ -8,6 +8,8 @@ That being said, for roughly $100 USD as of this writing, it's not cheap, but ce
 
 I should also note that the Ubiquiti devices themselves have a pretty darn good WebUI, and have an OK install that includes fun stuff like Python 2.7 stock - you might just want to play around with it before putting OpenBSD on it. 
 
+There is in fact a guide for this already, but as it is not specific to the ERL (as well taking some TFTP detours you may prefer), I decided to make a more lengthy, focused guide. The official Octeon OpenBSD Instructions are here: http://ftp.openbsd.org/pub/OpenBSD/5.9/octeon/INSTALL.octeon 
+
 Tools Required
 ==============
 
@@ -96,8 +98,8 @@ You should get a blank screen - that's a good thing! Don't panic, we'll put some
 
 _NOTE: If you don't get a blank screen and instead get some error, chances are some other things are going on, you can troubleshoot with: `ls -ltr /dev/*usb*`. Do you see a "usbserial" device there, or nothing? If nothing... there might be an issue with your cable, unfortunately, and you'll need to get that working prior to moving forward._ 
 
-Boot The Image on Your Edge Router Lite
-=======================================
+Get the Ubiquiti Router Up and Running
+======================================
 
 Now it's time to apply power to your ERL. If you had somehow jumped ahead and plugged in the power already, please remove it - we'll need to interrupt the boot process before moving forward. 
 
@@ -112,6 +114,9 @@ Octeon ubnt_e100#
 
 This is fantastic news - we're ready load our OpenBSD 5.9 mini root image!
 
+Boot The Image on Your Edge Router Lite
+=======================================
+
 * To load your miniroot: `fatload usb 0 $loadaddr bsd.rd`
 
 This should result in the following output:
@@ -125,5 +130,22 @@ reading bsd.rd
 8379834 bytes read
 ```
 
+Are you ready? It's go time!
+
+* Boot the image: `bootoctlinux`
+
+Tons of output will result, the last of which is the following prompt:
+
+```
+Welcome to the OpenBSD/octeon 5.9 installation program.
+(I)nstall, (U)pgrade, (A)utoinstall or (S)hell?
+```
+
+Complete the OpenBSD Install
+============================
+
+The rest of this will involve installing OpenBSD to your USB stick. Remember that you can back up the install at any time using our process above. 
+
+If you're OK using eth0 as your primary interface, you can follow along with my config, but otherwise I'd highly recommend the official install instructions: http://ftp.openbsd.org/pub/OpenBSD/5.9/octeon/INSTALL.octeon
 
 
