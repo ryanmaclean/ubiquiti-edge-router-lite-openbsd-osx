@@ -2,7 +2,7 @@
 
 Install OpenBSD 5.9 on your Ubiquiti Edge Router Lite from MacOS (OSX)
 
-Note that this assuredly will void warranties, guaranties and might be a tax on your sanity: PROCEED AT YOUR OWN PERIL. 
+Note that this assuredly will void warranties, guarantees and might be a tax on your sanity: PROCEED AT YOUR OWN PERIL. 
 
 That being said, for roughly $100 USD as of this writing, it's not cheap, but certainly possible to have a backup ERL (Edge Router Lite) handy should something go awry. 
 
