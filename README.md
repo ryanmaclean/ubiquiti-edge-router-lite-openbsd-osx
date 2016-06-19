@@ -1,6 +1,6 @@
 # Ubiquiti Edge Router Lite OpenBSD Upgrade on OSX
 
-Install OpenBSD on your Ubiquiti Edge Router Lite from MacOS (OSX)
+Install OpenBSD 5.9 on your Ubiquiti Edge Router Lite from MacOS (OSX)
 
 Retrieve the Shimmery Wondrous USB Stick via Ubiquiti Surgery
 =============================================================
