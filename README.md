@@ -1,6 +1,6 @@
-# Ubiquiti Edge Router Lite OpenBSD Upgrade on OSX
+# Ubiquiti Edge Router Lite 3 OpenBSD Upgrade on OSX
 
-Install OpenBSD 5.9 on your Ubiquiti Edge Router Lite from MacOS (OSX)
+Install OpenBSD 5.9 on your Ubiquiti Edge Router Lite 3 (ERL3) from MacOS (OSX)
 
 Note that this assuredly will void warranties, guarantees and might be a tax on your sanity: PROCEED AT YOUR OWN PERIL. 
 
