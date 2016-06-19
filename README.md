@@ -173,5 +173,10 @@ OpenBSD Install
 * As usual, press enter to use the default BSD mirror (mine was `ftp.OpenBSD.org`
 * Select the default server directory by pressing "enter"
 * Press "enter" to select the default sets ( you *may* want to remove the `game59.tgz` set, I kept it!)
-* Wait while the sets are grabbed from the mirror (about 20 minutes on a 100mbit link for me)
-* 
+* Wait while the sets are grabbed from the mirror, extracted, then installed (about 20 minutes on a 100mbit link for me)
+* Press "enter" for *almost* the last time to accept that you're done
+* Finally, hit enter again to set the time! 
+
+We've installed the OS at this point, but will need to reboot in order to load it from scratch. 
+
+* Type `reboot` to reboot your ERL into OpenBSD mode!
