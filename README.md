@@ -86,8 +86,15 @@ Our next step is to remove the USB stick from our Mac; it's currently un-mounted
 * Attach the console cable to your ERL in the "console" port
 * Attach the other end of said cable into your Mac in a free USB port
 
+Connect Your Mac to Your Router
+===============================
+Next we'll need to get our connection to the Ubiquiti ERL working via the console cable. I'm assuming you've only got one FTDI cable connected. If you have more than one connected, I'll also assume you've got an app to do this, or may prefer to use `minicom`... The salient thing to remember here is that `9600` won't suffice: you'll need to connect at a rate of `115200`. The following command is a one-liner that worked for me. 
+
+* Still in the terminal, type the following: `screen $(ls -ltr /dev/*usb* | grep tty | cut -d " " -f 16) 115200`
+
+You should get a blank screen - that's a good thing! Don't panic, we'll put some text in that scary void shortly.
+
+_NOTE: If you don't get a blank screen and instead get some error, chances are some other things are going on, you can troubleshoot with: `ls -ltr /dev/*usb*`. Do you see a "usbserial" device there, or nothing? If nothing... there might be an issue with your cable, unfortunately, and you'll need to get that working prior to moving forward._ 
+
 Boot The Image on Your Edge Router Lite
 =======================================
-Next we'll need to get our connection to the Ubiquiti ERL working via the console cable. 
-
-
