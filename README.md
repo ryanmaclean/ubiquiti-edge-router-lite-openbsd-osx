@@ -8,7 +8,7 @@ That being said, for roughly $100 USD as of this writing, it's not cheap, but ce
 
 I should also note that the Ubiquiti devices themselves have a pretty darn good WebUI, and have an OK install that includes fun stuff like Python 2.7 stock - you might just want to play around with it before putting OpenBSD on it. 
 
-There is in fact a guide for this already, but as it is not specific to the ERL (as well taking some TFTP detours you may prefer), I decided to make a more lengthy, focused guide. The official Octeon OpenBSD Instructions are here: http://ftp.openbsd.org/pub/OpenBSD/5.9/octeon/INSTALL.octeon 
+There is in fact a guide for this already, but as it is not specific to the ERL3 (as well taking some TFTP detours you may prefer), I decided to make a more lengthy, focused guide. The official Octeon OpenBSD Instructions are here: http://ftp.openbsd.org/pub/OpenBSD/5.9/octeon/INSTALL.octeon 
 
 Tools Required
 ==============
