@@ -112,3 +112,18 @@ Octeon ubnt_e100#
 
 This is fantastic news - we're ready load our OpenBSD 5.9 mini root image!
 
+* To load your miniroot: `fatload usb 0 $loadaddr bsd.rd`
+
+This should result in the following output:
+
+```
+reading bsd.rd
+..........
+........................
+.......
+
+8379834 bytes read
+```
+
+
+
