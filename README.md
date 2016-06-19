@@ -11,8 +11,10 @@ I should also note that the Ubiquiti devices themselves have a pretty darn good 
 Tools Required
 ==============
 
-* Serial connection to your Ubiquiti Edge Router Lite. I'd suggest a Cisco knock-off cable like this: 
-* Phillips size 0 screwdriver: 
+You'll need some stuff in order to get started. I've added links to Amazon sellers, but note that these aren't affiliate links and that you're probably going to be able to find these cheaper elsewhere, or possible in a store local to you.
+
+* Serial connection to your Ubiquiti Edge Router Lite. I'd suggest a FTDI Cisco knock-off cable like this: https://www.amazon.com/Cisco-Console-Cable-Windows-Linux/dp/B00RY3ELKG 
+* Phillips size 0 screwdriver: https://www.amazon.com/Stahlwille-4752-0-Phillips-Recess-Cross-Head-Screwdriver/dp/B00C12AY7O
 * Your local admin password (most likely the same one you use on your phone for the App Store these days...)
 * Some patience
 * A beverage
