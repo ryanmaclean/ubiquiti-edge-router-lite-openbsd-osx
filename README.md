@@ -148,4 +148,30 @@ The rest of this will involve installing OpenBSD to your USB stick. Remember tha
 
 If you're OK using eth0 as your primary interface, you can follow along with my config, but otherwise I'd highly recommend the official install instructions: http://ftp.openbsd.org/pub/OpenBSD/5.9/octeon/INSTALL.octeon
 
+OpenBSD Install
+===============
 
+* Press "i" on your keyboard to continue along with the instal
+* Press "enter" to select the default vt220 
+* System hostname: this is up to you, I used "octeon1"
+* Press "enter" to use the default "cnmac0" (this is eth0 as printed on the ERL)
+* Press "enter" to not use IPv6 (unless you use it, of course)
+* Press "enter" to complete the network interface configuration
+* Enter a password for your root account, note that there will not be any feedback in screen as you type it in
+* Repeat the password, again, no feedback
+* Press "enter" to start sshd by default
+* Setup a local user - I recommend this instead of using ssh as root - type the name in
+* Either type the full name for this user, or hit enter to keep it the same
+* Enter the password for the user, then repeat it
+* Hit "enter" to disallow root login (highly recommended)
+* Enter your timezone - mine was `America/Vancouver`, but you can hit "?" to list them
+* Hit "enter" to select your root disk `sd0` (there should only be one :smile:
+* Press "enter" once more to select the whole disk
+* Again, "enter" to use auto layout
+* Once the disk preparation is done, hit enter to use HTTP as the protocol
+* Press "enter" again in order to not use a proxy
+* As usual, press enter to use the default BSD mirror (mine was `ftp.OpenBSD.org`
+* Select the default server directory by pressing "enter"
+* Press "enter" to select the default sets
+* Wait while the sets are grabbed from the mirror (about 20 minutes on a 100mbit link for me)
+* 
