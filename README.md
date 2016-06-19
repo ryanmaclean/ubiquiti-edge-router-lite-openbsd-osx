@@ -8,6 +8,15 @@ That being said, for roughly $100 USD as of this writing, it's not cheap, but ce
 
 I should also note that the Ubiquiti devices themselves have a pretty darn good WebUI, and have an OK install that includes fun stuff like Python 2.7 stock - you might just want to play around with it before putting OpenBSD on it. 
 
+Tools Required
+==============
+
+* Serial connection to your Ubiquiti Edge Router Lite. I'd suggest a Cisco knock-off cable like this: 
+* Phillips screwdriver: 
+* Your local admin password (most likely the same one you use on your phone for the App Store these days...)
+* Some patience
+* A beverage
+
 Retrieve the Shimmery Wondrous USB Stick via Ubiquiti Surgery
 =============================================================
 
