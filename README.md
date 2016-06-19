@@ -63,4 +63,29 @@ Remember that disk # we retrieved oh so long ago? Yep, we'll need it again:
 * Use the following command to overwrite the disk with our miniroot: `sudo dd if=miniroot59.fs of=/dev/disk#`
 * Chances are good that you won't need to enter your password again, but in case you've taken a bio-break, be prepared to enter it once more
 
+Once completed, you'll see output probably identical to the following:
+
+```
+24576+0 records in
+24576+0 records out
+12582912 bytes transferred in 21.667341 secs (580732 bytes/sec)
+```
+
+Huzzah! You've got a miniroot image ready to go!
+
+Move the USB Stick From Your Mac to the ERL
+===========================================
+
+Our next step is to remove the USB stick from our Mac; it's currently un-mounted, so there'll be no messing about with unmounting and getting warnings, thank you very much. You can simply yank it straight out and slap it in the ERL. 
+
+* Gently but firmly grasp the USB stick and remove it from your Mac
+* Insert the USB stick into the Edge Router Lite once more
+* Screw the whole thing back together - we're being optimistic here :)
+* Attach the console cable to your ERL in the "console" port
+* Attach the other end of said cable into your Mac in a free USB port
+
+Boot The Image on Your Edge Router Lite
+=======================================
+Next we'll need to get our connection to the Ubiquiti ERL working via the console cable. 
+
 
