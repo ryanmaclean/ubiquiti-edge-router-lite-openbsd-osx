@@ -82,7 +82,7 @@ Our next step is to remove the USB stick from our Mac; it's currently un-mounted
 
 * Gently but firmly grasp the USB stick and remove it from your Mac
 * Insert the USB stick into the Edge Router Lite once more
-* Screw the whole thing back together - we're being optimistic here :)
+* Screw the whole thing back together - we're being optimistic here :smirk:
 * Attach the console cable to your ERL in the "console" port
 * Attach the other end of said cable into your Mac in a free USB port
 
