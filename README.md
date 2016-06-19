@@ -12,7 +12,7 @@ Tools Required
 ==============
 
 * Serial connection to your Ubiquiti Edge Router Lite. I'd suggest a Cisco knock-off cable like this: 
-* Phillips screwdriver: 
+* Phillips size 0 screwdriver: 
 * Your local admin password (most likely the same one you use on your phone for the App Store these days...)
 * Some patience
 * A beverage
@@ -20,7 +20,7 @@ Tools Required
 Retrieve the Shimmery Wondrous USB Stick via Ubiquiti Surgery
 =============================================================
 
-* Open your Edge Router Lite. There are three small screws on the back. I used a size 4 phillips screwdriver to get his done.
+* Open your Edge Router Lite. There are three small screws on the back. I used a size 000 phillips screwdriver to get his done, though upon further examination a 0 would have been the correct size (it's also much more common).
 * Once opened, remove the USB stick
 * On your Mac, open the Terminal app
 * Type `diskutil list` in the terminal window - this shows you disks currently inserted
