@@ -98,3 +98,17 @@ _NOTE: If you don't get a blank screen and instead get some error, chances are s
 
 Boot The Image on Your Edge Router Lite
 =======================================
+
+Now it's time to apply power to your ERL. If you had somehow jumped ahead and plugged in the power already, please remove it - we'll need to interrupt the boot process before moving forward. 
+
+* Plug in the power to the Ubiquiti router
+* In screen, press the "enter" key on your keyboard a few times in order to interrupt the boot process
+
+If successful, you should see the following prompt:
+
+```
+Octeon ubnt_e100#
+```
+
+This is fantastic news - we're ready load our OpenBSD 5.9 mini root image!
+
