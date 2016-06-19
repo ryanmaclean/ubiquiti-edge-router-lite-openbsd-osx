@@ -64,6 +64,7 @@ Write the Mini Root Image to the USB Stick
 
 Remember that disk # we retrieved oh so long ago? Yep, we'll need it again:
 
+* Unmount the disk: `diskutil unmountDisk /dev/disk#`
 * Use the following command to overwrite the disk with our miniroot: `sudo dd if=miniroot59.fs of=/dev/disk#`
 * Chances are good that you won't need to enter your password again, but in case you've taken a bio-break, be prepared to enter it once more
 
