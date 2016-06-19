@@ -81,8 +81,9 @@ Huzzah! You've got a miniroot image ready to go!
 Move the USB Stick From Your Mac to the ERL
 ===========================================
 
-Our next step is to remove the USB stick from our Mac; it's currently un-mounted, so there'll be no messing about with unmounting and getting warnings, thank you very much. You can simply yank it straight out and slap it in the ERL. 
+Our next step is to remove the USB stick from our Mac. Once unmounted, you can simply yank it straight out and slap it in the ERL. 
 
+* In the terminal: `diskutil unmountDisk /dev/disk#`
 * Gently but firmly grasp the USB stick and remove it from your Mac
 * Insert the USB stick into the Edge Router Lite once more
 * Screw the whole thing back together - we're being optimistic here :smirk:
