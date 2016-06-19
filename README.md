@@ -172,6 +172,6 @@ OpenBSD Install
 * Press "enter" again in order to not use a proxy
 * As usual, press enter to use the default BSD mirror (mine was `ftp.OpenBSD.org`
 * Select the default server directory by pressing "enter"
-* Press "enter" to select the default sets
+* Press "enter" to select the default sets ( you *may* want to remove the `game59.tgz` set, I kept it!)
 * Wait while the sets are grabbed from the mirror (about 20 minutes on a 100mbit link for me)
 * 
