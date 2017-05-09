@@ -2,52 +2,65 @@
 
 Install OpenBSD 5.9 on your Ubiquiti Edge Router Lite 3 (ERL3) from MacOS (OSX)
 
-Note that this assuredly will void warranties, guarantees and might be a tax on your sanity: PROCEED AT YOUR OWN PERIL. 
+Note that this assuredly will void warranties, guarantees and might be a tax on
+your sanity: PROCEED AT YOUR OWN PERIL.
 
-That being said, for roughly $100 USD as of this writing, it's not cheap, but certainly possible to have a backup ERL (Edge Router Lite) handy should something go awry. 
+That being said, for roughly $100 USD as of this writing, it's not cheap, but
+certainly possible to have a backup ERL (Edge Router Lite) handy should
+something go awry.
 
-I should also note that the Ubiquiti devices themselves have a pretty darn good WebUI, and have an OK install that includes fun stuff like Python 2.7 stock - you might just want to play around with it before putting OpenBSD on it. 
+I should also note that the Ubiquiti devices themselves have a pretty darn good
+WebUI, and have an OK install that includes fun stuff like Python 2.7 stock -
+you might just want to play around with it before putting OpenBSD on it.
 
-There is in fact a guide for this already, but as it is not specific to the ERL3 (as well taking some TFTP detours you may prefer), I decided to make a more lengthy, focused guide. The official Octeon OpenBSD Instructions are here: http://ftp.openbsd.org/pub/OpenBSD/5.9/octeon/INSTALL.octeon 
+There is in fact a guide for this already, but as it is not specific to the
+ERL3 (as well taking some TFTP detours you may prefer), I decided to make a
+more lengthy, focused guide. The official Octeon OpenBSD Instructions are here:
+<http://ftp.openbsd.org/pub/OpenBSD/5.9/octeon/INSTALL.octeon>
 
-Tools Required
-==============
+## Tools Required
 
-You'll need some stuff in order to get started. I've added links to Amazon sellers, but note that these aren't affiliate links and that you're probably going to be able to find these cheaper elsewhere, or possibly in a store local to you.
+You'll need some stuff in order to get started. I've added links to Amazon
+sellers, but note that these aren't affiliate links and that you're probably
+going to be able to find these cheaper elsewhere, or possibly in a store local
+to you.
 
-* Serial connection to your Ubiquiti Edge Router Lite. I'd suggest a FTDI Cisco knock-off cable like this: https://www.amazon.com/Cisco-Console-Cable-Windows-Linux/dp/B00RY3ELKG 
-* Phillips size 0 screwdriver: https://www.amazon.com/Stahlwille-4752-0-Phillips-Recess-Cross-Head-Screwdriver/dp/B00C12AY7O
-* Your local admin password (most likely the same one you use on your phone for the App Store these days...)
+* Serial connection to your Ubiquiti Edge Router Lite.
+* Phillips size 0 screwdriver
+* Your local admin password
 * Some patience
 * A beverage
 
-Retrieve the Shimmery Wondrous USB Stick via Ubiquiti Surgery
-=============================================================
+## Retrieve the Shimmery Wondrous USB Stick via Ubiquiti Surgery
 
-* Open your Edge Router Lite. There are three small screws on the back. I used a size 000 phillips screwdriver to get his done, though upon further examination a 0 would have been the correct size (it's also much more common).
-* Once opened, remove the USB stick
+* Open your Edge Router Lite. There are three small screws on the back.
+* Size 0 phillips screwdriver will fit snugly.
+* Once opened, remove the USB stick.
 * On your Mac, open the Terminal app
-* Type `diskutil list` in the terminal window - this shows you disks currently inserted
+* Type `diskutil list` in the terminal - this shows you disks currently inserted
 * On your Mac, insert the USB stick
-* You'll probably only see the FAT32 boot partition show up. LEAVE IT ALONE FOR NOW. 
-* Again in the terminal, type `diskutil list` - you should see a new disk entry, take note of the `/dev/disk#`
-* Unmount the disk that contains the `Windows_FAT_32` partiton that is 148.9MB using this command: `diskutil unmountDisk /dev/disk#`
-* You should be rewarded with the following: `Unmount of all volumes on disk4 was successful` (if not, please close all windows you have open relating to this disk)
+* You'll probably only see the FAT32 boot partition show up. LEAVE IT ALONE.
+* Again in the terminal, type `diskutil list` - take note of the `/dev/disk#`
+* Use this command to unmount 150MB fat disk: `diskutil unmountDisk /dev/disk#`
+* You should be rewarded with the following:
+* `Unmount of all volumes on disk4 was successful`
+* (if not, please close all windows you have open relating to this disk)
 
-We'll begin by taking a backup with diskutil
-============================================
+## We'll begin by taking a backup with diskutil
 
-* Take a backup of the USB disk to your Desktop with the following command: `cd ~/Desktop && sudo dd if=/dev/disk# of=erl-backup$(date +"%m_%d_%Y").img.dd bs=512`
+* Take a backup of the USB disk to your Desktop with the following command:
+* `sudo dd if=/dev/disk# of=erl-backup$(date +"%m_%d_%Y").img.dd bs=512`
 * Chances are, you'll need to enter your local admin password at the prompt
-* Please *patiently* wait for about 10 minutes or so (534 seconds on my MBP) - if do happen to get impatient, you can press `ctrl+t` in order to see what's going on
+* Please *patiently* wait for about 10 minutes or so (534 seconds on my MBP)
+* if you do happen to get impatient, press `ctrl+t` in order to see progress
 * Confirm the file was created: `ls -alh ~/erl-backup*`
-* You should receive output similar to the following: `-rw-r--r--  1 root  staff   3.7G 18 Jun 20:05 /Users/erlang/erl-backup06_18_2016.img.dd`
+* You should receive output similar to the following: `-rw-r--r--  1 root
+* staff 3.7G 18 Jun 20:05 /Users/erlang/erl-backup06_18_2016.img.dd`
 
-Download OpenBSD from a Mirror
-==============================
+## Download OpenBSD from a Mirror
 
-You'll want a copy of the miniroot for OpenBSD 5.9 prior to moving forward. I got mine from here: 
-http://ftp.openbsd.org/pub/OpenBSD/5.9/octeon/
+You'll want a copy of the miniroot for OpenBSD 5.9 prior to moving forward.
+I got mine from here: <http://ftp.openbsd.org/pub/OpenBSD/5.9/octeon/>
 
 * Via commandline: `curl -O http://ftp.openbsd.org/pub/OpenBSD/5.9/octeon/miniroot59.fs`
 
@@ -59,14 +72,16 @@ You'll get output similar to the following, letting you know it's done (100%):
 100 12.0M  100 12.0M    0     0   461k      0  0:00:26  0:00:26 --:--:--  622k
 ```
 
-Write the Mini Root Image to the USB Stick
-==========================================
+## Write the Mini Root Image to the USB Stick
 
 Remember that disk # we retrieved oh so long ago? Yep, we'll need it again:
 
 * Unmount the disk: `diskutil unmountDisk /dev/disk#`
-* Use the following command to overwrite the disk with our miniroot: `sudo dd if=miniroot59.fs of=/dev/disk#`
-* Chances are good that you won't need to enter your password again, but in case you've taken a bio-break, be prepared to enter it once more
+* Use the following command to overwrite the disk with our miniroot:
+* `sudo dd if=miniroot59.fs of=/dev/disk#`
+
+Chances are good that you won't need to enter your password again, but in
+case you've taken a bio-break, be prepared to enter it once more
 
 Once completed, you'll see output probably identical to the following:
 
@@ -78,10 +93,10 @@ Once completed, you'll see output probably identical to the following:
 
 Huzzah! You've got a miniroot image ready to go!
 
-Move the USB Stick From Your Mac to the ERL
-===========================================
+## Move the USB Stick From Your Mac to the ERL
 
-Our next step is to remove the USB stick from our Mac. Once unmounted, you can simply yank it straight out and slap it in the ERL. 
+Our next step is to remove the USB stick from our Mac. Once unmounted, you can
+simply yank it straight out and slap it in the ERL.
 
 * In the terminal: `diskutil unmountDisk /dev/disk#`
 * Gently but firmly grasp the USB stick and remove it from your Mac
@@ -90,23 +105,40 @@ Our next step is to remove the USB stick from our Mac. Once unmounted, you can s
 * Attach the console cable to your ERL in the "console" port
 * Attach the other end of said cable into your Mac in a free USB port
 
-Connect Your Mac to Your Router
-===============================
-Next we'll need to get our connection to the Ubiquiti ERL working via the console cable. I'm assuming you've only got one FTDI cable connected. If you have more than one connected, I'll also assume you've got an app to do this, or may prefer to use `minicom`... The salient thing to remember here is that `9600` won't suffice: you'll need to connect at a rate of `115200`. The following command is a one-liner that worked for me. 
+## Connect Your Mac to Your Router
 
-* Still in the terminal, type the following: `screen $(ls -ltr /dev/*usb* | grep tty | cut -d " " -f 16) 115200`
+Next we'll need to get our connection to the Ubiquiti ERL working via the
+console cable. I'm assuming you've only got one FTDI cable connected. If you
+have more than one connected, I'll also assume you've got an app to do this,
+or may prefer to use `minicom`... The salient thing to remember here is that
+`9600` won't suffice: you'll need to connect at a rate of `115200`. The
+ following command is a one-liner that worked for me.
 
-You should get a blank screen - that's a good thing! Don't panic, we'll put some text in that scary void shortly.
+Still in the terminal, type the following:
 
-_NOTE: If you don't get a blank screen and instead get some error, chances are some other things are going on, you can troubleshoot with: `ls -ltr /dev/*usb*`. Do you see a "usbserial" device there, or nothing? If nothing... there might be an issue with your cable, unfortunately, and you'll need to get that working prior to moving forward._ 
+```
+screen $(ls -ltr /dev/*usb* | grep tty | cut -d " " -f 16) 115200`
+```
 
-Get the Ubiquiti Router Up and Running
-======================================
+You should get a blank screen - that's a good thing! Don't panic, we'll put
+some text in that scary void shortly.
 
-Now it's time to apply power to your ERL. If you had somehow jumped ahead and plugged in the power already, please remove it - we'll need to interrupt the boot process before moving forward. 
+### NOTE
+
+If you don't get a blank screen and instead get some error, chances are
+some other things are going on, you can troubleshoot with: `ls -ltr /dev/*usb*`.
+Do you see a "usbserial" device there, or nothing? If nothing... there might be
+an issue with your cable, unfortunately, and you'll need to get that working
+prior to moving forward._
+
+## Get the Ubiquiti Router Up and Running
+
+Now it's time to apply power to your ERL. If you had somehow jumped ahead and
+plugged in the power already, please remove it - we'll need to interrupt the
+boot process before moving forward.
 
 * Plug in the power to the Ubiquiti router
-* In screen, press the "enter" key on your keyboard a few times in order to interrupt the boot process
+* In screen, press the "enter" key a few times to interrupt the boot process
 
 If successful, you should see the following prompt:
 
@@ -116,8 +148,7 @@ Octeon ubnt_e100#
 
 This is fantastic news - we're ready load our OpenBSD 5.9 mini root image!
 
-Boot The Image on Your Edge Router Lite
-=======================================
+## Boot The Image on Your Edge Router Lite
 
 * To load your miniroot: `fatload usb 0 $loadaddr bsd.rd`
 
@@ -143,48 +174,49 @@ Welcome to the OpenBSD/octeon 5.9 installation program.
 (I)nstall, (U)pgrade, (A)utoinstall or (S)hell?
 ```
 
-Complete the OpenBSD Install
-============================
+## Complete the OpenBSD Install
 
-The rest of this will involve installing OpenBSD to your USB stick. Remember that you can back up the install at any time using our process above. 
+The rest of this will involve installing OpenBSD to your USB stick. Remember
+that you can back up the install at any time using our process above.
 
-If you're OK using eth0 as your primary interface, you can follow along with my config, but otherwise I'd highly recommend the official install instructions: http://ftp.openbsd.org/pub/OpenBSD/5.9/octeon/INSTALL.octeon
+If you're OK using eth0 as your primary interface, you can follow along with
+my config, but otherwise I'd highly recommend the official install
+instructions: <http://ftp.openbsd.org/pub/OpenBSD/5.9/octeon/INSTALL.octeon>
 
-OpenBSD Install
-===============
+## OpenBSD Install
 
 * Press "i" on your keyboard to continue along with the instal
-* Press "enter" to select the default vt220 
+* Press "enter" to select the default vt220
 * System hostname: this is up to you, I used "octeon1"
 * Press "enter" to use the default "cnmac0" (this is eth0 as printed on the ERL)
 * Press "enter" to not use IPv6 (unless you use it, of course)
 * Press "enter" to complete the network interface configuration
-* Enter a password for your root account, note that there will not be any feedback in screen as you type it in
+* Enter a password for your root account (text will not show)
 * Repeat the password, again, no feedback
 * Press "enter" to start sshd by default
-* Setup a local user - I recommend this instead of using ssh as root - type the name in
+* Setup a local user - I recommend this instead of using ssh as root
 * Either type the full name for this user, or hit enter to keep it the same
 * Enter the password for the user, then repeat it
 * Hit "enter" to disallow root login (highly recommended)
-* Enter your timezone - mine was `America/Vancouver`, but you can hit "?" to list them
+* Enter your timezone, but you can hit "?" to list them
 * Hit "enter" to select your root disk `sd0` (there should only be one :smile:
 * Press "enter" once more to select the whole disk
 * Again, "enter" to use auto layout
 * Once the disk preparation is done, hit enter to use HTTP as the protocol
 * Press "enter" again in order to not use a proxy
-* As usual, press enter to use the default BSD mirror (mine was `ftp.OpenBSD.org`
+* As usual, press enter to use the default BSD mirror
 * Select the default server directory by pressing "enter"
-* Press "enter" to select the default sets ( you *may* want to remove the `game59.tgz` set, I kept it!)
-* Wait while the sets are grabbed from the mirror, extracted, then installed (about 20 minutes on a 100mbit link for me)
+* Press "enter" to select the default sets
+* Wait while the sets are grabbed from the mirror, extracted, then installed
 * Press "enter" for *almost* the last time to accept that you're done
-* Finally, hit enter again to set the time! 
+* Finally, hit enter again to set the time!
 
-We've installed the OS at this point, but will need to reboot in order to load it from scratch. 
+We've installed the OS at this point, but will need to reboot in order to load
+it from scratch.
 
 * Type `reboot` to reboot your ERL
 
-Swap the Bootloader
-===================
+## Swap the Bootloader
 
 First we'll backup the old bootloader, then set our own as the default:
 
@@ -193,10 +225,10 @@ First we'll backup the old bootloader, then set our own as the default:
 * `setenv bootdelay 5`
 * `saveenv`
 
-Restart One Last Time
-=====================
+## Restart One Last Time
 
-Now we'll need to give the router one last reboot in order to test the u-boot booatloader chaining:
+Now we'll need to give the router one last reboot in order to test the u-boot
+booatloader chaining:
 
 ```
 reset
@@ -211,7 +243,8 @@ Looking for valid bootloader image....
 Jumping to start of image at address 0xbfc80000
 
 
-U-Boot 1.1.1 (UBNT Build ID: 4670715-gbd7e2d7) (Build time: May 27 2014 - 11:16:22)
+U-Boot 1.1.1 (UBNT Build ID: 4670715-gbd7e2d7) (Build time: May 27 2014 -
+11:16:22)
 
 BIST check passed.
 UBNT_E100 r1:2, r2:18, f:4/71, serial #: 0418D6F15211
@@ -226,7 +259,7 @@ USB:   (port 0) scanning bus for devices... 1 USB Devices found
        scanning bus for storage devices...
   Device 0: Vendor:          Prod.: USB DISK 2.0     Rev: PMAP
             Type: Removable Hard Disk
-            Capacity: 3824.0 MB = 3.7 GB (7831552 x 512)                                                         0
+            Capacity: 3824.0 MB = 3.7 GB (7831552 x 512)
 reading bsd
 .......
 .....
@@ -234,7 +267,8 @@ reading bsd
 
 5228781 bytes read
 ELF file is 64 bit
-Allocating memory for ELF segment: addr: 0xffffffff81000000 (adjusted to: 0x1000000), size 0x504890
+Allocating memory for ELF segment: addr: 0xffffffff81000000 (adjusted to:
+0x1000000), size 0x504890
 Allocated memory for ELF segment: addr: 0xffffffff81000000, size 0x504890
 Processing PHDR 0
   Loading 47e368 bytes at ffffffff81000000
@@ -312,10 +346,12 @@ uar: ns16550, no working fifo
 com0: console
 com1 at uartbus0 base 0x1180000000c00 irq 35: ns16550, no working fifo
 /dev/ksyms: Symbol table not valid.
-umass0 at uhub0 port 1 configuration 1 interface 0 " USB DISK 2.0" rev 2.00/1.00 addr 2
+umass0 at uhub0 port 1 configuration 1 interface 0 " USB DISK 2.0" rev
+2.00/1.00 addr 2
 umass0: using SCSI over Bulk-Only
 scsibus0 at umass0: 2 targets, initiator 0
-sd0 at scsibus0 targ 1 lun 0: <, USB DISK 2.0, PMAP> SCSI4 0/direct removable serial.13fe41004CA98DCA8590
+sd0 at scsibus0 targ 1 lun 0: <, USB DISK 2.0, PMAP> SCSI4 0/direct removable
+serial.13fe41004CA98DCA8590
 sd0: 3824MB, 512 bytes/sector, 7831552 sectors
 vscsi0 at root
 scsibus1 at vscsi0: 256 targets
@@ -354,12 +390,24 @@ OpenBSD/octeon (octeon1) (console)
 login:
 ```
 
-Update OpenBSD
-==============
+## Update OpenBSD
 
 Now that everything's all installed and working, you'll want to run an update:
 
 ```
 su -
 pkg_add -Uu
+```
+
+## Restoring Linux
+
+Insert the old usb stick.
+
+```
+setenv oldbootcmd 'fatload usb 0 $loadaddr vmlinux.64;bootoctlinux $loadaddr
+ coremask=0x3 root=/dev/sda2 rootdelay=15 rw rootsqimg=squashfs.img
+ rootsqwdir=w mtdparts=phys_mapped_flash:512k(boot0),512k(boot1),64k@1024k(eeprom)'
+setenv bootcmd 'sleep 10; usb reset; sleep 10; $(oldbootcmd)'
+saveenv
+reset
 ```
