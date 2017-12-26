@@ -116,7 +116,7 @@ or may prefer to use `minicom`... The salient thing to remember here is that
 Still in the terminal, type the following:
 
 ```
-screen $(ls -ltr /dev/*usb* | grep tty | cut -d " " -f 16) 115200`
+screen $(ls -ltr /dev/*usb* | grep tty | cut -d " " -f 16) 115200
 ```
 
 You should get a blank screen - that's a good thing! Don't panic, we'll put
