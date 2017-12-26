@@ -54,8 +54,7 @@ to you.
 * Please *patiently* wait for about 10 minutes or so (534 seconds on my MBP)
 * if you do happen to get impatient, press `ctrl+t` in order to see progress
 * Confirm the file was created: `ls -alh ~/erl-backup*`
-* You should receive output similar to the following: `-rw-r--r--  1 root
-* staff 3.7G 18 Jun 20:05 /Users/erlang/erl-backup06_18_2016.img.dd`
+* You should receive output similar to the following: `-rw-r--r--  1 root * staff 3.7G 18 Jun 20:05 /Users/erlang/erl-backup06_18_2016.img.dd`
 
 ## Download OpenBSD from a Mirror
 
